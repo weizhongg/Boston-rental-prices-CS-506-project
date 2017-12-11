@@ -1,0 +1,25 @@
+Title: How do renters know if price increases are fair?
+
+We analyzed time series data gathered from online rental service Zillow. Zillow uses a proprietary metric, the Zillow Rental Index (ZRI), to estimate the rent in given geographic locations. From their publicly available data, we were able to get monthly ZRI estimates for each neighborhood in the city of Boston.
+
+To compare the trends in ZRI over time, we normalized each neighborhood's ZRI score and plotted the percentage change in rental price over time.
+
+[show figure]
+
+We noticed that there appeared to be two natural groupings in this data set. We used k-means clustering to divide our data into 2 clusters. We chose 2 clusters visually but confirmed our intuition by finding the silhouette score for all numbers of clusters between 2 and 15; 2 clusters had the highest score (0.71). These groups can also be seen in a heatmap of the similarity matrix. Distances between time series were calculated by using the dynamic time warping algorithm.
+
+[show figure]
+
+[show figure]
+
+Based on the sharp clustering of the ZRI time series, we wondered what factors might influence this difference. Our first intuition was to see if geographical location was a relevant predictor. We found a sharp geographic dichotomy between the two clusters when plotting the neighborhoods by their geographic coordinates.
+
+[show figure]
+
+Further, we are interested in predicting how rent prices will change in the future. We looked at the autocorrelation and partial autocorrelation plots for each neighborhood. We found that the data appeared to show a first order autoregressive model. Here is an examplar neighborhood:
+
+[show figure]
+
+As rental contracts are genuinely signed year-to-year, tenants can expect changes to their rent once per year. To estimate what would be a fair change in rent, we looked at the percentage change in ZRI over the past year to estimate what tenants can estimate as a fair increase for 2018.
+
+[show figure]
